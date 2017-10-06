@@ -97,9 +97,11 @@ class Order(object):
         """Use this instead of self.place when testing"""
         # get the price to check that everything worked okay
         response = self._send(PRICE_URL, True)
-        
+        return response
+
         if response['Status'] == -1:
             raise Exception('get price failed: %r' % response)
+
         self.credit_card = card
         self.data['Payments'] = [
             {
